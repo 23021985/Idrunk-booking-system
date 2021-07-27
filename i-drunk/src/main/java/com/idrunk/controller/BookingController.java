@@ -73,7 +73,7 @@ public class BookingController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> removeBooking(@PathVariable("id") long id, Booking booking) {
+    public ResponseEntity<Object> removeBooking(@PathVariable("id") long id,@RequestBody Booking booking) {
         bookingService.updateBooking(id, booking);
         return ResponseEntity.noContent().build();
     }

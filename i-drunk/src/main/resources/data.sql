@@ -4,6 +4,8 @@ INSERT INTO users (username, password, enabled, email, first_name, last_name) VA
 
 INSERT INTO authorities (username, authority) VALUES ('arnie', 'ROLE_USER');
 INSERT INTO authorities (username, authority) VALUES ('stillis', 'ROLE_USER');
+INSERT INTO authorities (username, authority) VALUES ('Johan', 'ROLE_USER');
+INSERT INTO authorities (username, authority) VALUES ('Ingeborg', 'ROLE_USER');
 INSERT INTO authorities (username, authority) VALUES ('Hansadmin', 'ROLE_ADMIN');
 
 INSERT INTO drink (id, name, price, stock) VALUES (1, 'Martini', 12.20, 32);
@@ -26,6 +28,9 @@ INSERT INTO tafel (id, tafel_nr, max_guest) VALUES (6, 6, 4);
 INSERT INTO tafel (id, tafel_nr, max_guest) VALUES (7, 7, 4);
 INSERT INTO tafel (id, tafel_nr, max_guest) VALUES (8, 8, 6);
 
-INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (1, '2021-09-12T08:00:00', '2021-09-14T14:00:00', 2, 'Hansadmin');
-INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (2, '2021-10-12T09:00:00', '2021-10-14T14:00:00', 3, 'arnie');
-INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (3, '2021-11-12T10:00:00', '2021-11-14T14:00:00', 4, 'stillis');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (1, '2021-09-12T08:00:00', '2021-09-14T14:00:00', 1, 'Hansadmin');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (2, '2021-10-12T09:00:00', '2021-10-14T14:00:00', 2, 'arnie');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (3, '2021-11-12T10:00:00', '2021-11-14T14:00:00', 3, 'stillis');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (4, '2021-09-12T11:00:00', '2021-09-14T14:00:00', 4, 'Hansadmin');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (5, '2021-10-12T12:00:00', '2021-10-14T14:00:00', 5, 'arnie');
+INSERT INTO booking(id, end_time, start_time, tafel_id, user_username) VALUES (6, '2021-11-12T13:00:00', '2021-11-14T14:00:00', 6, 'stillis');
