@@ -7,11 +7,11 @@ import com.idrunk.models.Booking;
 import com.idrunk.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @CrossOrigin
 @RestController
@@ -44,6 +44,7 @@ public class BookingController {
 
         } else if (tafelId != null && startTime == null && endTime == null && username == null) {
             bookings = bookingService.getBookingsForTafel(tafelId);
+
         } else {
             throw new BadRequestException();
         }
@@ -54,6 +55,7 @@ public class BookingController {
 
         return dtos;
     }
+
 
     @GetMapping("/{id}")
     public BookingDto getBooking(@PathVariable("id") Long id) {
@@ -71,10 +73,4 @@ public class BookingController {
         bookingService.deleteBooking(id);
     }
 
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> removeBooking(@PathVariable("id") long id,@RequestBody Booking booking) {
-        bookingService.updateBooking(id, booking);
-        return ResponseEntity.noContent().build();
-    }
 }

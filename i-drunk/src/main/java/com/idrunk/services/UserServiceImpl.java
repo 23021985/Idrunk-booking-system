@@ -2,6 +2,7 @@ package com.idrunk.services;
 
 
 import com.idrunk.exceptions.RecordNotFoundException;
+import com.idrunk.exceptions.UsernameAlreadyExistsException;
 import com.idrunk.models.Authority;
 import com.idrunk.models.User;
 import com.idrunk.repositories.UserRepository;
@@ -47,6 +48,10 @@ public class UserServiceImpl implements com.idrunk.services.UserService {
 
     @Override
     public String createUser(User user) {
+
+        if(userExists(user.getUsername())) {
+            throw new UsernameAlreadyExistsException("Deze gebruikersnaam bestaat al, log in met de huidige gebruikersnaam of verzin een nieuwe");
+        }
 
         String randomString = RandomStringGenerator.generateAlphaNumeric(20);
 

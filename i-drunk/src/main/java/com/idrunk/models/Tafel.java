@@ -3,6 +3,8 @@ package com.idrunk.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Tafel {
@@ -15,9 +17,9 @@ public class Tafel {
 
     private int maxGuest;
 
-//    @OneToMany(mappedBy = "tafel")
-//    List<Booking> bookingList;
-//
+    @OneToMany(mappedBy = "tafel")
+    List<Booking> bookingList;
+
 
     public Long getTafelNr() {
         return tafelNr;
