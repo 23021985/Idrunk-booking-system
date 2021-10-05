@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+public
 class RequestServiceImpl implements RequestService {
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
