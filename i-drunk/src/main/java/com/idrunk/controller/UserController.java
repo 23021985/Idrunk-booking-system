@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUser(username));
     }
 
-    @PostMapping(value = "")
+    @PostMapping(value = "/register")
     public ResponseEntity<Object> createKlant(@RequestBody User user) {
         String newUsername = userService.createUser(user);
 
