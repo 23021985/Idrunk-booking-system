@@ -58,27 +58,27 @@ public class DrinkController {
         drinkService.updateDrink(id, drink);
     }
 
-    @GetMapping(value = "/{requestId}/drinks")
-    public ResponseEntity<Object> getRequestDrinks(@PathVariable("requestId") Long requestId) {
-        return ResponseEntity.ok().body(drinkService.getDrinkSet(requestId));
-    }
-
-    @PostMapping(value = "/{requestId}/drinks")
-    public ResponseEntity<Object> addRequestDrink(@PathVariable("requestId") Long requestId, @RequestBody Map<String, Object> fields, @RequestBody int amount) {
-        try {
-            Long id = (Long) fields.get("id");
-            drinkService.addDrink(requestId, id);
-            return ResponseEntity.noContent().build();
-        }
-        catch (Exception ex) {
-            throw new BadRequestException();
-        }
-    }
-
-    @DeleteMapping(value = "/{requestId}/drinkset/{drink}")
-    public ResponseEntity<Object> deleteRequestDrink(@PathVariable("requestId") Long requestId, @PathVariable("id") Long id) {
-        drinkService.removeDrink(requestId, id);
-        return ResponseEntity.noContent().build();
-    }
+//    @GetMapping(value = "/{requestId}/drinks")
+//    public ResponseEntity<Object> getRequestDrinks(@PathVariable("requestId") Long requestId) {
+//        return ResponseEntity.ok().body(drinkService.getDrinkSet(requestId));
+//    }
+//
+//    @PostMapping(value = "/{requestId}/drinks")
+//    public ResponseEntity<Object> addRequestDrink(@PathVariable("requestId") Long requestId, @RequestBody Map<String, Object> fields, @RequestBody int amount) {
+//        try {
+//            Long id = (Long) fields.get("id");
+//            drinkService.addDrink(requestId, id);
+//            return ResponseEntity.noContent().build();
+//        }
+//        catch (Exception ex) {
+//            throw new BadRequestException();
+//        }
+//    }
+//
+//    @DeleteMapping(value = "/{requestId}/drinkset/{drink}")
+//    public ResponseEntity<Object> deleteRequestDrink(@PathVariable("requestId") Long requestId, @PathVariable("id") Long id) {
+//        drinkService.removeDrink(requestId, id);
+//        return ResponseEntity.noContent().build();
+//    }
 
 }

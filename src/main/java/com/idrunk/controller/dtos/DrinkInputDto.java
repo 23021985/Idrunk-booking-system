@@ -17,7 +17,7 @@ public class DrinkInputDto {
         drink.setId(id);
         drink.setName(name);
         drink.setPrice(price);
-        drink.setStock(stock);
+//        drink.setAmount(stock);
         return drink;
     }
 }

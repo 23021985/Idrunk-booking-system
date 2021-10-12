@@ -2,8 +2,6 @@ package com.idrunk.controller.dtos;
 
 import com.idrunk.models.Drink;
 
-import java.util.List;
-
 public class DrinkDto {
 
     public Long id;
@@ -20,7 +18,7 @@ public class DrinkDto {
         dto.id = drink.getId();
         dto.name = drink.getName();
         dto.price = drink.getPrice();
-        dto.stock = drink.getStock();
+//        dto.stock = drink.getAmount();
 
         return dto;
     }

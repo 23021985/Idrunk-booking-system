@@ -1,23 +1,24 @@
 package com.idrunk.controller.dtos;
 
-import com.idrunk.models.Drink;
-import com.idrunk.models.Request;
-import com.idrunk.models.User;
+import com.idrunk.models.*;
 
+import java.util.Collection;
 import java.util.Set;
 
 public class RequestInputDto {
-    public Long id;
-    User username;
-    Set<Drink> drinkSet;
+
+    public String username;
+    public Collection<Long> drinkIdList;
+    //is dit de Long die niet converted kan worden naar String??
+//    public int amount;
+    public boolean hasBeenServed;
+    public Collection<RequestDrinkAmount> amountSet;
 
 
     public Request toRequest(){
 
         var request = new Request();
-        request.setId(id);
-        request.setUsername(username);
-        request.setDrinkSet(drinkSet);
+
         request.setHasBeenServed(false);
 
         return request;

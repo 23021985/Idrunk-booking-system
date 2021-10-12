@@ -14,6 +14,7 @@ public interface UserService {
     public abstract String createUser(User user);
 
     public abstract void updateUser(String username, User user);
+
     public abstract void deleteUser(String username);
 
     public abstract Collection<User> getUsers();
@@ -25,9 +26,11 @@ public interface UserService {
     public abstract Set<Authority> getAuthorities(String username);
 
     public abstract void addAuthority(String username, String authority);
+
     public abstract void removeAuthority(String username, String authority);
 
     public void uploadMenu(String username, MultipartFile file) throws IOException;
 
     public byte[] getMenu(String username);
+
 }

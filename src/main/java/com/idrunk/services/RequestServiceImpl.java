@@ -3,25 +3,28 @@ package com.idrunk.services;
 import com.idrunk.exceptions.RecordNotFoundException;
 import com.idrunk.models.Drink;
 import com.idrunk.models.Request;
-import com.idrunk.repositories.DrinkRepository;
-import com.idrunk.repositories.RequestRepository;
-import com.idrunk.repositories.TafelRepository;
-import com.idrunk.repositories.UserRepository;
+import com.idrunk.models.RequestDrinkAmount;
+import com.idrunk.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public
 class RequestServiceImpl implements RequestService {
     private final RequestRepository requestRepository;
+    private final RequestDrinkAmountRepository requestDrinkAmountRepository;
     private final UserRepository userRepository;
     private final DrinkRepository drinkRepository;
 
     @Autowired
-    RequestServiceImpl(DrinkRepository drinkRepository, RequestRepository requestRepository, UserRepository userRepository) {
+    RequestServiceImpl(DrinkRepository drinkRepository, RequestDrinkAmountRepository requestDrinkAmountRepository, RequestRepository requestRepository, UserRepository userRepository) {
         this.requestRepository = requestRepository;
+        this.requestDrinkAmountRepository = requestDrinkAmountRepository;
         this.userRepository = userRepository;
         this.drinkRepository = drinkRepository;
     }
@@ -69,14 +72,31 @@ class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public Long createRequest(Request request) {
-        request.setId(request.getId());
-        request.setUsername(request.getUsername());
-        request.setHasBeenServed(request.isHasBeenServed());
-        Request newRequest = requestRepository.save(request);
+    public void saveRequest(String username, boolean hasBeenServed, Collection<RequestDrinkAmount> amountSet){
+        var optionalUsername = userRepository.findById(username);
+        var user = optionalUsername.get();
+        var request = new Request();
+        request.setUsername(user);
+        request.setHasBeenServed(false);
+        requestRepository.save(request);
 
-        return newRequest.getId();
 
     }
+
+//    @Override
+//    public void createRequest(String username, Collection<Long> drinkIdList, boolean hasBeenServed) {
+//
+//        var optionalUser = userRepository.findById(username);
+//        var user = optionalUser.get();
+//        var request = new Request();
+//        var requestSize = (long) requestRepository.findAll().size();
+//
+//        request.setId(requestSize +1);
+//        request.setUsername(user);
+//        request.setHasBeenServed(request.isHasBeenServed());
+//        requestRepository.save(request);
+//        request.setDrinkSet(drinkRepository.findAllByRequestId(request.getId()));
+//
+//    }
 
 }

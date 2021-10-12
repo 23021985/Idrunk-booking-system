@@ -7,6 +7,8 @@ import com.idrunk.repositories.DrinkRepository;
 import com.idrunk.repositories.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -61,37 +63,37 @@ public class DrinkServiceImpl implements DrinkService{
         drinkRepository.deleteById(id);
     }
 
-    @Override
-    public Set<Drink> getDrinkSet(Long requestId) {
-        if(!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
+//    @Override
+//    public Collection<Drink> getDrinkSet(Long requestId) {
+//        if(!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
+//
+//        Request request = requestRepository.findById(requestId).get();
+//
+//        return request.getDrinkSet();
+//    }
 
-        Request request = requestRepository.findById(requestId).get();
-
-        return request.getDrinkSet();
-    }
-
-    @Override
-    public void addDrink(Long requestId, Long id) {
-        if (!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
-
-        Request request = requestRepository.findById(requestId).get();
-        request.addDrink(new Drink(id));
-
-        requestRepository.save(request);
-    }
-
-    @Override
-    public void removeDrink(Long requestId, Long id) {
-
-        if (!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
-
-        Request request = requestRepository.findById(requestId).get();
-
-        Drink drinkToRemove = request.getDrinkSet().stream().filter((a) -> a.getDrink().equals(id)).findAny().get();
-
-        request.removeDrink(drinkToRemove);
-
-        requestRepository.save(request);
-
-    }
+//    @Override
+//    public void addDrink(Long requestId, Long id) {
+//        if (!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
+//
+//        Request request = requestRepository.findById(requestId).get();
+//        request.addDrink(new Drink(id));
+//
+//        requestRepository.save(request);
+//    }
+//
+//    @Override
+//    public void removeDrink(Long requestId, Long id) {
+//
+//        if (!requestRepository.existsById(requestId)) throw new RecordNotFoundException("no request was found");
+//
+//        Request request = requestRepository.findById(requestId).get();
+//
+//        Drink drinkToRemove = request.getDrinkSet().stream().filter((a) -> a.getDrink().equals(id)).findAny().get();
+//
+//        request.removeDrink(drinkToRemove);
+//
+//        requestRepository.save(request);
+//
+//    }
 }

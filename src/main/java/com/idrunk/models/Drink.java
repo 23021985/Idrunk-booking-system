@@ -1,9 +1,8 @@
 package com.idrunk.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Drink {
@@ -16,19 +15,22 @@ public class Drink {
 
     private double price;
 
-    private int stock;
+//    private int amount; Deze wordt later toegevoegd
 
+//    @ManyToOne
+//    Request request;
 
-    @ManyToOne
-    Request request;
+    @OneToMany(mappedBy = "drink")
+    @JsonIgnore
+    Set<RequestDrinkAmount>drinkSet;
 
-    private String drink;
+//    private String drink;
+
     public Drink() {}
 
     public Drink(Long id) {
 
         this.id = id;
-
     }
 
     public long getId() {
@@ -55,27 +57,27 @@ public class Drink {
         this.price = price;
     }
 
-    public Request getRequest() {
-        return request;
+    public Set<RequestDrinkAmount> getDrinkSet() {
+        return drinkSet;
     }
 
-    public void setRequest(Request request) {
-        this.request = request;
+    public void setDrinkSet(Set<RequestDrinkAmount> drinkSet) {
+        this.drinkSet = drinkSet;
     }
 
-    public Object getDrink() {
-        return drink;
-    }
+    //    public Object getDrink() {
+//        return drink;
+//    }
+//
+//    public void setDrink(String drink) {
+//        this.drink = drink;
+//    }
 
-    public void setDrink(String drink) {
-        this.drink = drink;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+//    public int getAmount() {
+//        return amount;
+//    }
+//
+//    public void setAmount(int amount) {
+//        this.amount = amount;
+//    }
 }
